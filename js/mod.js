@@ -20,7 +20,9 @@ let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.1</h3><br>
 		- Added Enigma Layer.<br>
 		- Added Questions.<br>
-    - Added Perplexity`;
+    - Added Perplexity<br>
+    - Added Answers<br>
+    - Added `;
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`;
 
