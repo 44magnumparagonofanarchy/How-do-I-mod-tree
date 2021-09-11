@@ -9,7 +9,7 @@ addLayer("E", {
     };
   },
   color: "#4BDC13",
-  requires: new Decimal(0.10), // Can be a function that takes requirement increases into account
+  requires: new Decimal(10), // Can be a function that takes requirement increases into account
   resource: "Enigmas", // Name of prestige currency
   baseResource: "Questions", // Name of resource prestige is based on
   baseAmount() {
@@ -41,76 +41,12 @@ addLayer("E", {
   },
   upgrades: {
     11: {
-      title: "What is Java's Crypt?",
-      description: "Multiply Question by 0.025x.",
+      title: "Generator of Genericness",
+      description: "Gain 1 Point every second.",
       cost: new Decimal(1),
       unlocked() {
         return player[this.layer].unlocked;
       } 
-    },
-        12: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            13: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            21: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            15: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            16: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            17: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            18: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
-            19: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", );
-      } 
-    },
+    }
   }
 });
