@@ -78,10 +78,7 @@ addLayer("E", {
       cost: new Decimal(),
       unlocked() {
         return hasUpgrade("E", );
-      },
-              layerShown() {
-                false
-              },
+      } 
     },
             16: {
       title: "",
