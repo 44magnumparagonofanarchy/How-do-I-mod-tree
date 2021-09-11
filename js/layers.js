@@ -76,6 +76,9 @@ addLayer("E", {
       title: "",
       description: "",
       cost: new Decimal(),
+              style: {
+    opacity: 0
+},
       unlocked() {
         return hasUpgrade("E", 11);
       } 
@@ -92,6 +95,9 @@ addLayer("E", {
       title: "",
       description: "",
       cost: new Decimal(),
+              style: {
+    opacity: 0
+},
       unlocked() {
         return hasUpgrade("E", 11);
       } 
@@ -108,6 +114,66 @@ addLayer("E", {
       title: "",
       description: "",
       cost: new Decimal(),
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    41: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      style: {
+    opacity: 0
+},
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    42: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    43: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      style: {
+    opacity: 0
+},
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    51: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      style: {
+    opacity: 0
+},
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    52: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      unlocked() {
+        return hasUpgrade("E", 18);
+      } 
+    },
+    53: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      style: {
+    opacity: 0
+},
       unlocked() {
         return hasUpgrade("E", 18);
       } 
