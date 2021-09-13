@@ -9,7 +9,7 @@ addLayer("E", {
     };
   },
   color: "#4BDC13",
-  requires: new Decimal(0.10), // Can be a function that takes requirement increases into account
+  requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
   resource: "Enigmas", // Name of prestige currency
   baseResource: "Questions", // Name of resource prestige is based on
   baseAmount() {
@@ -42,141 +42,142 @@ addLayer("E", {
   upgrades: {
     11: {
       title: "What is Java's Crypt?",
-      description: "Multiply Question by 0.025x.",
+      description: "Multiply Question gain by 0.025x.",
       cost: new Decimal(1),
       unlocked() {
         return player[this.layer].unlocked;
-      } 
+      }
     },
-        12: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", 11 );
-      } 
-    },
-            13: {
-      title: "",
-      description: "",
+    12: {
+      title: "How does microwaving a pizza help me learn js?",
+      description: "Multiplies Question gain by ",
       cost: new Decimal(),
       unlocked() {
         return hasUpgrade("E", 11);
-      } 
+      }
     },
-            21: {
+    13: {
       title: "",
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 11);
-      } 
+        return hasUpgrade("E", 12);
+      }
     },
-            22: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-              style: {
-    opacity: 0
-},
-      unlocked() {
-        return hasUpgrade("E", 11);
-      } 
-    },
-            23: {
+    21: {
       title: "",
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 11);
-      } 
+        return hasUpgrade("E", 13);
+      }
     },
-            31: {
+    22: {
       title: "",
       description: "",
       cost: new Decimal(),
-              style: {
-    opacity: 0
-},
+      style: {
+        opacity: 0
+      },
       unlocked() {
-        return hasUpgrade("E", 11);
-      } 
+        return hasUpgrade("E", 21);
+      }
     },
-            32: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
-      unlocked() {
-        return hasUpgrade("E", 17);
-      } 
-    },
-            33: {
+    23: {
       title: "",
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 22);
+      }
+    },
+    31: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      style: {
+        opacity: 0
+      },
+      unlocked() {
+        return hasUpgrade("E", 23);
+      }
+    },
+    32: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      unlocked() {
+        return hasUpgrade("E", 31);
+      }
+    },
+    33: {
+      title: "",
+      description: "",
+      cost: new Decimal(),
+      unlocked() {
+        return hasUpgrade("E", 32);
+      }
     },
     41: {
       title: "",
       description: "",
       cost: new Decimal(),
       style: {
-    opacity: 0
-},
+        opacity: 0
+      },
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 33);
+      }
     },
     42: {
       title: "",
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 41);
+      }
     },
     43: {
       title: "",
       description: "",
       cost: new Decimal(),
       style: {
-    opacity: 0
-},
+        opacity: 0
+      },
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 42);
+      }
     },
     51: {
       title: "",
       description: "",
       cost: new Decimal(),
       style: {
-    opacity: 0
-},
+        opacity: 0
+      },
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 43);
+      }
     },
     52: {
       title: "",
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
+        return hasUpgrade("E", 51);
+      }
     },
     53: {
       title: "",
       description: "",
       cost: new Decimal(),
       style: {
-    opacity: 0
-},
+        opacity: 0
+      },
+      type() {"ghost"},
       unlocked() {
-        return hasUpgrade("E", 18);
-      } 
-    },
+        return hasUpgrade("E", 52);
+      }
+    }
   }
 });

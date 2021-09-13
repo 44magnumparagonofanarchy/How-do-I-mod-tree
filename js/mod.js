@@ -44,7 +44,7 @@ function getPointGen() {
   if (!canGenPoints()) return new Decimal(0);
 
   let gain = new Decimal(0.01);
-  if (hasUpgrade("E", 11)) gain = gain.times(0.025);
+  if (hasUpgrade("E", 11)) gain = gain.times("2.5");
   return gain;
 }
 
