@@ -50,8 +50,8 @@ addLayer("E", {
     },
     12: {
       title: "How does microwaving a pizza help me learn js?",
-      description: "Multiplies Question gain by ",
-      cost: new Decimal(),
+      description: "Multiplies Question gain by 0.002x",
+      cost: new Decimal(2),
       unlocked() {
         return hasUpgrade("E", 11);
       }
