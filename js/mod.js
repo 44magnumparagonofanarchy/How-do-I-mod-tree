@@ -20,9 +20,7 @@ let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.1</h3><br>
 		- Added Enigma Layer.<br>
 		- Added Questions.<br>
-    - Added Perplexity<br>
-    - Added Answers<br>
-    - Added `;
+    - Added Answers`;
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`;
 
@@ -61,7 +59,7 @@ var displayThings = [];
 
 // Determines when the game "ends"
 function isEndgame() {
-  return player.points.gte(new Decimal("e280000000"));
+  return player.A.points.gte(new Decimal(11));
 }
 
 // Less important things beyond this point!
