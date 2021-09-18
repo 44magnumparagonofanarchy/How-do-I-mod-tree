@@ -57,8 +57,8 @@ addLayer("E", {
       }
     },
     13: {
-      title: "",
-      description: "",
+      title: "Variable? I hate math",
+      description: "Multiplies Question gain by 0.002",
       cost: new Decimal(),
       unlocked() {
         return hasUpgrade("E", 12);
@@ -88,7 +88,7 @@ addLayer("E", {
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 22);
+        return hasUpgrade("E", 21);
       }
     },
     31: {
@@ -107,7 +107,7 @@ addLayer("E", {
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 31);
+        return hasUpgrade("E", 23);
       }
     },
     33: {
@@ -115,7 +115,7 @@ addLayer("E", {
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 32);
+        return hasUpgrade("E", 23);
       }
     },
     41: {
@@ -134,7 +134,7 @@ addLayer("E", {
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 41);
+        return hasUpgrade("E", 33);
       }
     },
     43: {
@@ -145,7 +145,7 @@ addLayer("E", {
         opacity: 0
       },
       unlocked() {
-        return hasUpgrade("E", 42);
+        return hasUpgrade("E", 33);
       }
     },
     51: {
@@ -156,7 +156,7 @@ addLayer("E", {
         opacity: 0
       },
       unlocked() {
-        return hasUpgrade("E", 43);
+        return hasUpgrade("E", 42);
       }
     },
     52: {
@@ -164,7 +164,7 @@ addLayer("E", {
       description: "",
       cost: new Decimal(),
       unlocked() {
-        return hasUpgrade("E", 51);
+        return hasUpgrade("E", 42);
       }
     },
     53: {
@@ -176,7 +176,7 @@ addLayer("E", {
       },
       type() {"ghost"},
       unlocked() {
-        return hasUpgrade("E", 52);
+        return hasUpgrade("E", 42);
       }
     }
   }
