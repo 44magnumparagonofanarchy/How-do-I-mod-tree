@@ -183,16 +183,32 @@ addLayer("E", {
       }
     }
   },
-  tabFormat: [
-    "main-display",
-    ["prestige-button"],
-    "blank",
+tabFormat: {
+    "Questions": { // these are the names of the subtabs, whatever you put here is what appears on the button
+        content: [
+                "main-display",
+    "prestige-button",
     "blank",
     "milestones",
     "blank",
     "blank",
-    "upgrades"
-]
+    "upgrades"// all the stuff for the actual layer you're using
+        ]
+    },
+    "Answers": {
+        embedLayer: "Ghost",
+      content: [
+                "main-display",
+    "prestige-button",
+    "blank",
+    "milestones",
+    "blank",
+    "blank",
+    "upgrades"// all the stuff for the actual layer you're using
+        
+      ]
+    }
+         }
 })
 addLayer("Ghost", {
     startData() { return {                  // startData is a function that returns default data for a layer. 
@@ -201,10 +217,10 @@ addLayer("Ghost", {
     }},
 
     color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
+    resource: "Answers",            // The name of this layer's main prestige resource.
     row: 1000000,
   position: 1000,
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
+    baseResource: "E",                 // The name of the resource your prestige gain is based on.
     baseAmount() { return player.points },  // A function to return the current amount of baseResource.
 
     requires: new Decimal(0),              // The amount of the base needed to  gain 1 of the prestige currency.
