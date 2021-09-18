@@ -183,35 +183,4 @@ addLayer("E", {
       }
     }
   },
-  microtabs: {
-        Questions: {
-            "Sacrifice": {
-                content:[
-                    "upgrades",
-                    "clickables"
-                ]
-            },
-            "Upgrades": {
-                content:[
-                    "upgrades",
-                    ["raw-html", () => `If you don't see any <h3 style="color:#4BDC13">upgrades</h3>, then you must get <b>a lot</b> of prestige points.`]
-                    ["upgrades",["2"]],
-                    
-                ],
-            }
-        },
-    },
-  tabFormat: {
-            "Questions": {
-        content:[
-            function() {if (player.tab == "E") return "main-display"},
-            "prestige-button",
-            function() {if (player.tab == "E") return "resource-display"},
-            "blank",
-            "upgrades"
-            ]
-        },
-    "Answers": {
-    },
-}
 });
