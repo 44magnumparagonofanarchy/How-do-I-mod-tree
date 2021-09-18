@@ -74,8 +74,8 @@ addLayer("E", {
       }
     },
     22: {
-      title: "Okay, now I need insparation...",
-      description: "Unl",
+      title: "ghost",
+      description: "",
       cost: new Decimal(),
       style: {
         opacity: 0
@@ -106,13 +106,13 @@ addLayer("E", {
     32: {
       title: "What about an incremental?",
       description: "multiply E gain by 2",
-      cost: new Decimal(),
+      cost: new Decimal(10),
       unlocked() {
         return hasUpgrade("E", 23);
       }
     },
     33: {
-      title: "",
+      title: "What if I use this ",
       description: "",
       cost: new Decimal(),
       unlocked() {
