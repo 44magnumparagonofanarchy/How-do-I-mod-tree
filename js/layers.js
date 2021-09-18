@@ -182,5 +182,36 @@ addLayer("E", {
         return hasUpgrade("E", 42);
       }
     }
-  }
+  },
+  microtabs: {
+        main: {
+            "Sacrifice": {
+                content:[
+                    "blank",
+                    "clickables"
+                ]
+            },
+            "Upgrades": {
+                content:[
+                    "blank",
+                    ["raw-html", () => `If you don't see any <h3 style="color:#4BDC13">upgrades</h3>, then you must get <b>a lot</b> of prestige points.`]
+                    ["upgrades",["2"]],
+                    
+                ],
+            }
+        },
+    },
+  tabFormat: {
+            "Main": {
+        content:[
+            function() {if (player.tab == "E") return "main-display"},
+            "prestige-button",
+            function() {if (player.tab == "E") return "resource-display"},
+            "blank",
+            "upgrades"
+            ]
+        },
+    "Other tab": {
+    },
+}
 });
