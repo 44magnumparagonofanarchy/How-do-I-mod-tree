@@ -20,6 +20,7 @@ addLayer("E", {
   gainMult() {
     // Calculate the multiplier for main currency from bonuses
     mult = new Decimal(1);
+    if hasUpgrage("E", 32) mult = new Decimal(2);
     return mult;
   },
   gainExp() {
@@ -66,15 +67,15 @@ addLayer("E", {
     },
     21: {
       title: "Why's coding take so long?",
-      description: "",
+      description: "who knows? (unlock the next upgrade)",
       cost: new Decimal(5),
       unlocked() {
         return hasUpgrade("E", 13);
       }
     },
     22: {
-      title: "",
-      description: "",
+      title: "Okay, now I need insparation...",
+      description: "Unl",
       cost: new Decimal(),
       style: {
         opacity: 0
@@ -84,9 +85,9 @@ addLayer("E", {
       }
     },
     23: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
+      title: "Okay, now I need insparation...",
+      description: "(Unlock the next 2 upgrades)",
+      cost: new Decimal(10),
       unlocked() {
         return hasUpgrade("E", 21);
       }
@@ -103,8 +104,8 @@ addLayer("E", {
       }
     },
     32: {
-      title: "",
-      description: "",
+      title: "What about an incremental?",
+      description: "multiply E gain by 2",
       cost: new Decimal(),
       unlocked() {
         return hasUpgrade("E", 23);
@@ -174,7 +175,9 @@ addLayer("E", {
       style: {
         opacity: 0
       },
-      type() {"ghost"},
+      type() {
+        "ghost";
+      },
       unlocked() {
         return hasUpgrade("E", 42);
       }
