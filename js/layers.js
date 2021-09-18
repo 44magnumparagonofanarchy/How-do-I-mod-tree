@@ -183,6 +183,16 @@ addLayer("E", {
       }
     }
   },
+  tabFormat: [
+    "main-display",
+    ["prestige-button"],
+    "blank",
+    "blank",
+    "milestones",
+    "blank",
+    "blank",
+    "upgrades"
+]
 })
 addLayer("Ghost", {
     startData() { return {                  // startData is a function that returns default data for a layer. 
@@ -215,4 +225,5 @@ addLayer("Ghost", {
     upgrades: {
         // Look in the upgrades docs to see what goes here!
     },
+  
 });
