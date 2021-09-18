@@ -9,6 +9,11 @@ addLayer("E", {
     };
   },
   color: "#4BDC13",
+      doReset(resettingLayer) {
+        let keep = [];
+        if (hasMilestone("A", 0) && resettingLayer=="E") keep.push("upgrades")
+      },
+        
   requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
   resource: "Enigmas", // Name of prestige currency
   baseResource: "Questions", // Name of resource prestige is based on
@@ -269,5 +274,14 @@ addLayer("A", {
       }
     },
     
-  }
-});
+  },
+          milestones: {
+            0: {requirementDescription: "5 Answers",
+                done() {return player[this.layer].best.gte(5)}, // Used to determine when to give the milestone
+                effectDescription: "Keep Enigma upgrades on Answer reset",
+            }, 
+                }},
+        
+                
+        
+);
