@@ -21,6 +21,7 @@ addLayer("E", {
     // Calculate the multiplier for main currency from bonuses
     mult = new Decimal(1);
     if (hasUpgrade("E", 32)) mult = mult.times(2);
+        if (hasUpgrade("A", 11)) mult = mult.times(2);
     return mult;
   },
   gainExp() {
@@ -228,10 +229,10 @@ addLayer("A", {
   position: 1000,
   baseResource: "E", // The name of the resource your prestige gain is based on.
   baseAmount() {
-    return player.points;
+    return player.E.points;
   }, // A function to return the current amount of baseResource.
 
-  requires: new Decimal(1), // The amount of the base needed to  gain 1 of the prestige currency.
+  requires: new Decimal(30), // The amount of the base needed to  gain 1 of the prestige currency.
   // Also the amount required to unlock the layer.
 
   type: "normal", // Determines the formula used for calculating prestige currency.
@@ -253,11 +254,20 @@ addLayer("A", {
   upgrades: {
     11: {
       title: "Oh, it's called Javascript, not Java's Crypt.",
-      description: "Answers ",
+      description: "Multiply Question gain by 2x",
       cost: new Decimal(1),
       unlocked() {
         return hasUpgrade("E", 52) || hasUpgrade("A", 11)
       }
-    }
+    },
+    12: {
+      title: "Microwaved Pizza is a person? Seriously?.",
+      description: "Multiply E gain by 2x",
+      cost: new Decimal(1),
+      unlocked() {
+        return hasUpgrade("E", 52) || hasUpgrade("A", 11)
+      }
+    },
+    
   }
 });
