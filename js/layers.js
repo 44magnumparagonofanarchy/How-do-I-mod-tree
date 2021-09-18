@@ -197,6 +197,9 @@ tabFormat: {
     },
     "Answers": {
         embedLayer: "Ghost",
+      unlocked() {
+        return hasUpgrade("E", 52) || 
+      },
       content: [
                 "main-display",
     "prestige-button",
@@ -204,16 +207,15 @@ tabFormat: {
     "milestones",
     "blank",
     "blank",
-    "upgrades"// all the stuff for the actual layer you're using
-        
+    "upgrades"// all the stuff for the actual layer you're using        
       ]
     }
          }
 })
-addLayer("Ghost", {
+addLayer("A", {
     startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: true,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+        unlocked: true,                   // You can add more variables here to add them to your layer.
+        points: new Decimal(1),             // "points" is the internal name for the main resource of the layer.
     }},
 
     color: "#4BDC13",                       // The color for this layer, which affects many elements.
@@ -223,7 +225,7 @@ addLayer("Ghost", {
     baseResource: "E",                 // The name of the resource your prestige gain is based on.
     baseAmount() { return player.points },  // A function to return the current amount of baseResource.
 
-    requires: new Decimal(0),              // The amount of the base needed to  gain 1 of the prestige currency.
+    requires: new Decimal(1),              // The amount of the base needed to  gain 1 of the prestige currency.
                                             // Also the amount required to unlock the layer.
 
     type: "normal",                         // Determines the formula used for calculating prestige currency.
@@ -239,7 +241,15 @@ addLayer("Ghost", {
     layerShown() { return false },          // Returns a bool for if this layer's node should be visible in the tree.
 
     upgrades: {
-        // Look in the upgrades docs to see what goes here!
+            11: {
+      title: "Oh, it's called Javascript, not Java's Crypt.",
+      description: "Answers ",
+      cost: new Decimal(1),
+      unlocked() {
+        return player[this.layer].unlocked;
+      }
+    },
+
     },
   
 });
