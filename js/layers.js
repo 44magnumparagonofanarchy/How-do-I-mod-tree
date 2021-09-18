@@ -20,7 +20,7 @@ addLayer("E", {
   gainMult() {
     // Calculate the multiplier for main currency from bonuses
     mult = new Decimal(1);
-    if hasUpgrage("E", 32) mult = new Decimal(2);
+    if (hasUpgrade("E", 32)) mult = mult.times(2);
     return mult;
   },
   gainExp() {
