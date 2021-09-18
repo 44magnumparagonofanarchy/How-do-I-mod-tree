@@ -112,9 +112,9 @@ addLayer("E", {
       }
     },
     33: {
-      title: "What if I use this ",
-      description: "",
-      cost: new Decimal(),
+      title: "What if I use this tree game and mod it?",
+      description: "Unlock the next upgrade",
+      cost: new Decimal(20),
       unlocked() {
         return hasUpgrade("E", 23);
       }
@@ -131,9 +131,9 @@ addLayer("E", {
       }
     },
     42: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
+      title: "Oh, it already has mods?",
+      description: "Almost there",
+      cost: new Decimal(21),
       unlocked() {
         return hasUpgrade("E", 33);
       }
@@ -161,9 +161,9 @@ addLayer("E", {
       }
     },
     52: {
-      title: "",
-      description: "",
-      cost: new Decimal(),
+      title: "Okay, time to get to work... what's next?",
+      description: "Start learning TMT, and gain answers.",
+      cost: new Decimal(30),
       unlocked() {
         return hasUpgrade("E", 42);
       }
