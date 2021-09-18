@@ -58,16 +58,16 @@ addLayer("E", {
     },
     13: {
       title: "Variable? I hate math",
-      description: "Multiplies Question gain by 0.002",
-      cost: new Decimal(),
+      description: "Multiplies Question gain by 0.002x",
+      cost: new Decimal(4),
       unlocked() {
         return hasUpgrade("E", 12);
       }
     },
     21: {
-      title: "",
+      title: "Why's coding take so long?",
       description: "",
-      cost: new Decimal(),
+      cost: new Decimal(5),
       unlocked() {
         return hasUpgrade("E", 13);
       }
