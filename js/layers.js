@@ -91,7 +91,7 @@ addLayer("E", {
       }
     },
     23: {
-      title: "Okay, now I need insparation...",
+      title: "Okay, now I need inspiration...",
       description: "(Unlock the next 2 upgrades)",
       cost: new Decimal(10),
       unlocked() {
@@ -223,7 +223,7 @@ addLayer("A", {
   startData() {
     return {
       // startData is a function that returns default data for a layer.
-      unlocked: true, // You can add more variables here to add them to your layer.
+      unlocked: false, // You can add more variables here to add them to your layer.
       points: new Decimal(0) // "points" is the internal name for the main resource of the layer.
     };
   },
@@ -262,7 +262,7 @@ addLayer("A", {
       description: "Multiply Question gain by 2x",
       cost: new Decimal(1),
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
+        return hasUpgrade("E", 52) || player.A.points.gte();
       }
     },
     12: {
