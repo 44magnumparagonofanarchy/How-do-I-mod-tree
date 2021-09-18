@@ -9,11 +9,11 @@ addLayer("E", {
     };
   },
   color: "#4BDC13",
-      doReset(resettingLayer) {
-        let keep = [];
-        if (hasMilestone("A", 0) && resettingLayer=="E") keep.push("upgrades")
-      },
-        
+  layerDataReset(resettingLayer) {
+    let keep = [];
+    if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("upgrades");
+  },
+
   requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
   resource: "Enigmas", // Name of prestige currency
   baseResource: "Questions", // Name of resource prestige is based on
@@ -26,7 +26,7 @@ addLayer("E", {
     // Calculate the multiplier for main currency from bonuses
     mult = new Decimal(1);
     if (hasUpgrade("E", 32)) mult = mult.times(2);
-        if (hasUpgrade("A", 11)) mult = mult.times(2);
+    if (hasUpgrade("A", 11)) mult = mult.times(2);
     return mult;
   },
   gainExp() {
@@ -49,7 +49,7 @@ addLayer("E", {
   upgrades: {
     11: {
       title: "What is Java's Crypt?",
-      description: "Multiply Question gain by 0.025x.",
+      description: "Multiply Question gain by 2.5x.",
       cost: new Decimal(1),
       unlocked() {
         return player[this.layer].unlocked;
@@ -57,7 +57,7 @@ addLayer("E", {
     },
     12: {
       title: "How does microwaving a pizza help me learn js?",
-      description: "Multiplies Question gain by 0.002x",
+      description: "Multiplies Question gain by 2x",
       cost: new Decimal(2),
       unlocked() {
         return hasUpgrade("E", 11);
@@ -65,7 +65,7 @@ addLayer("E", {
     },
     13: {
       title: "Variable? I hate math",
-      description: "Multiplies Question gain by 0.002x",
+      description: "Multiplies Question gain by 2x",
       cost: new Decimal(4),
       unlocked() {
         return hasUpgrade("E", 12);
@@ -139,7 +139,7 @@ addLayer("E", {
     42: {
       title: "Oh, it already has mods?",
       description: "Almost there",
-      cost: new Decimal(21),
+      cost: new Decimal(20),
       unlocked() {
         return hasUpgrade("E", 33);
       }
@@ -232,7 +232,7 @@ addLayer("A", {
   resource: "Answers", // The name of this layer's main prestige resource.
   row: 1000000,
   position: 1000,
-  baseResource: "E", // The name of the resource your prestige gain is based on.
+  baseResource: "Enigmas", // The name of the resource your prestige gain is based on.
   baseAmount() {
     return player.E.points;
   }, // A function to return the current amount of baseResource.
@@ -262,7 +262,7 @@ addLayer("A", {
       description: "Multiply Question gain by 2x",
       cost: new Decimal(1),
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11)
+        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
       }
     },
     12: {
@@ -270,18 +270,17 @@ addLayer("A", {
       description: "Multiply E gain by 2x",
       cost: new Decimal(1),
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11)
+        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
       }
-    },
-    
+    }
   },
-          milestones: {
-            0: {requirementDescription: "5 Answers",
-                done() {return player[this.layer].best.gte(5)}, // Used to determine when to give the milestone
-                effectDescription: "Keep Enigma upgrades on Answer reset",
-            }, 
-                }},
-        
-                
-        
-);
+  milestones: {
+    0: {
+      requirementDescription: "5 Answers",
+      done() {
+        return player[this.layer].best.gte(5);
+      }, // Used to determine when to give the milestone
+      effectDescription: "Keep Enigma upgrades on Answer reset"
+    }
+  }
+});
