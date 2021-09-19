@@ -262,7 +262,7 @@ addLayer("A", {
       description: "Multiply Question gain by 2x",
       cost: new Decimal(1),
       unlocked() {
-        return hasUpgrade("E", 52) || player.A.points.gte();
+        return hasUpgrade("E", 52) || player.A.points.gte(new Decimal(0));
       }
     },
     12: {
