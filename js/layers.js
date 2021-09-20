@@ -11,7 +11,8 @@ addLayer("E", {
   color: "#4BDC13",
   doReset(resettingLayer) {
     let keep = [];
-    if (hasMilestone("A", 0) && layerDataReset == "A") keep.push("upgrades");
+    if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("upgrades");
+      layerDataReset("E", keep);
   },
 
   requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
