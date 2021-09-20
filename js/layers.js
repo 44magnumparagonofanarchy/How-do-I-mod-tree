@@ -231,8 +231,8 @@ addLayer("A", {
 
   color: "#4BDC13", // The color for this layer, which affects many elements.
   resource: "Answers", // The name of this layer's main prestige resource.
-  row: 1000000,
-  position: 1000,
+  row: 1,
+  position: 0,
   baseResource: "Enigmas", // The name of the resource your prestige gain is based on.
   baseAmount() {
     return player.E.points;
