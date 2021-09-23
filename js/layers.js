@@ -87,6 +87,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       unlocked() {
         return hasUpgrade("E", 21);
       }
@@ -106,6 +107,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       unlocked() {
         return hasUpgrade("E", 23);
       }
@@ -133,6 +135,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       unlocked() {
         return hasUpgrade("E", 33);
       }
@@ -152,6 +155,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       unlocked() {
         return hasUpgrade("E", 33);
       }
@@ -163,6 +167,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       unlocked() {
         return hasUpgrade("E", 42);
       }
@@ -182,6 +187,7 @@ addLayer("E", {
       style: {
         opacity: 0
       },
+      canAfford: false,
       type() {
         "ghost";
       },
