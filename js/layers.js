@@ -9,8 +9,10 @@ addLayer("E", {
     };
   },
   color: "#4BDC13",
-  doReset(resettingLayer){let keep=[];if(hasMilestone("A",0)&&resettingLayer=="A")keep.push("upgrades");
-                          if(layers[resettingLayer].row>this.row)layerDataReset("E",keep)
+  doReset(resettingLayer) {
+    let keep = [];
+    if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("upgrades");
+    if (layers[resettingLayer].row > this.row) layerDataReset("E", keep);
   },
 
   requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
@@ -195,7 +197,7 @@ addLayer("E", {
     }
   },
   tabFormat: {
-    Questions: {
+    Enigmas: {
       // these are the names of the subtabs, whatever you put here is what appears on the button
       content: [
         "main-display",
@@ -248,7 +250,6 @@ addLayer("A", {
   type: "normal", // Determines the formula used for calculating prestige currency.
   exponent: 0.5, // "normal" prestige gain is (currency^exponent).
 
-
   gainMult() {
     // Returns your multiplier to your gain of the prestige resource.
     return new Decimal(1); // Factor in any bonuses multiplying gain here.
@@ -275,6 +276,10 @@ addLayer("A", {
       title: "Microwaved Pizza is a person? Seriously?.",
       description: "Multiply E gain by 2x",
       cost: new Decimal(2),
+          effect() {
+        return player[this.layer].points.add(1).pow(0.5)
+    },
+    effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
       unlocked() {
         return hasUpgrade("E", 52) || hasUpgrade("A", 11);
       }
