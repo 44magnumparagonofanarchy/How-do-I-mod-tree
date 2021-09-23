@@ -274,9 +274,28 @@ addLayer("A", {
     12: {
       title: "Microwaved Pizza is a person? Seriously?.",
       description: "Multiply E gain by 2x",
-      cost: new Decimal(3),
+      cost: new Decimal(2),
       unlocked() {
         return hasUpgrade("E", 52) || hasUpgrade("A", 11);
+      }
+    },
+    13: {
+      title: "Variables are kinda easy.",
+      description: "Good freaking luck",
+      cost: new Decimal(3),
+      effect() {
+        
+      },
+      unlocked() {
+        return hasUpgrade("E", 52) || hasUpgrade("A", 12);
+      }
+    },
+    14: {
+      title: "Microwaved Pizza is a person? Seriously?.",
+      description: "Understand buyables",
+      cost: new Decimal(100),
+      unlocked() {
+        return hasUpgrade("E", 52) || hasUpgrade("A", 13);
       }
     }
   },
