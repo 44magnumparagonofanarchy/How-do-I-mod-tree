@@ -276,10 +276,7 @@ addLayer("A", {
       title: "Microwaved Pizza is a person? Seriously?.",
       description: "Multiply E gain by 2x",
       cost: new Decimal(2),
-          effect() {
-        return player[this.layer].points.add(1).pow(0.5)
-    },
-    effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+      effect() {},
       unlocked() {
         return hasUpgrade("E", 52) || hasUpgrade("A", 11);
       }
@@ -289,7 +286,17 @@ addLayer("A", {
       description: "Good freaking luck",
       cost: new Decimal(3),
       effect() {
-        
+        let eff = player.points.plus(1).log10().pow(0.75).plus(1);
+                if (hasUpgrade("p", 33))
+                    eff = eff.pow(upgradeEffect("p", 33));
+                if (hasUpgrade("g", 15))
+                    eff = eff.pow(upgradeEffect("g", 15));
+                if (hasUpgrade("hn", 13))
+                    eff = eff.pow(upgradeEffect("hn", 13));
+                if ((Array.isArray(tmp.ma.mastered)) ? tmp.ma.mastered.includes(this.layer) : false)
+                    eff = eff.pow(75);
+                return eff;
+            
       },
       unlocked() {
         return hasUpgrade("E", 52) || hasUpgrade("A", 12);
