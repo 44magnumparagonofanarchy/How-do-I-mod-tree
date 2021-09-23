@@ -12,7 +12,7 @@ addLayer("E", {
   doReset(resettingLayer) {
     let keep = [];
     if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("upgrades");
-      layerDataReset("E", keep);
+        if (hasMilestone("A", 0) && resettingLayer == "A");
   },
 
   requires: new Decimal(0.1), // Can be a function that takes requirement increases into account
@@ -243,6 +243,10 @@ addLayer("A", {
 
   type: "normal", // Determines the formula used for calculating prestige currency.
   exponent: 0.5, // "normal" prestige gain is (currency^exponent).
+doReset() {
+      if (hasMilestone("A", 0) && resettingLayer == "E") keep.push("upgrades");
+        if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("points");
+  },
 
   gainMult() {
     // Returns your multiplier to your gain of the prestige resource.
@@ -271,7 +275,7 @@ addLayer("A", {
       description: "Multiply E gain by 2x",
       cost: new Decimal(1),
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
+        return hasUpgrade("E", 52) || hasUpgrade("A", 11) || player.A.points.gte(new Decimal(1));
       }
     }
   },
