@@ -281,9 +281,9 @@ addLayer("A", {
                 if (hasUpgrade("A", 13))
                     eff = eff.plus(1);
                 if (hasUpgrade("A", 13))
-                    eff = eff.pow(upgradeEffect("A", 12));
+                    eff = eff.times(1.001);
                 if (hasUpgrade("A", 13))
-                    eff = eff.pow(upgradeEffect("A", 12));
+                    eff = eff.times(1.005);
                 return eff;
       },
       unlocked() {
