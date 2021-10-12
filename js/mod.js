@@ -7,20 +7,21 @@ let modInfo = {
   discordLink: "Nope.",
   initialStartPoints: new Decimal(0), // Used for hard resets and new players
 
-  offlineLimit: 1 // In hours
+  offlineLimit: 0 // In hours
 };
 
 // Set your version in num and name
 let VERSION = {
-  num: "0.1",
-  name: "The True Start"
+  num: "0.2",
+  name: "The other true start"
 };
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.1</h3><br>
 		- Added Enigma Layer.<br>
 		- Added Questions.<br>
-    - Added Answers`;
+    - Added Answers <br>
+    - Added Conundrums`;
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`;
 
@@ -59,7 +60,7 @@ var displayThings = [];
 
 // Determines when the game "ends"
 function isEndgame() {
-  return player.A.points.gte(new Decimal(11));
+  return player.C.points.gte(new Decimal(1000));
 }
 
 // Less important things beyond this point!

@@ -12,6 +12,7 @@ addLayer("E", {
   doReset(resettingLayer) {
     let keep = [];
     if (hasMilestone("A", 0) && resettingLayer == "A") keep.push("upgrades");
+    if (hasMilestone("C", 2) && resettingLayer == "C") keep.push("upgrades");
     if (layers[resettingLayer].row > this.row) layerDataReset("E", keep);
   },
 
@@ -28,6 +29,8 @@ addLayer("E", {
     mult = new Decimal(1);
     if (hasUpgrade("E", 32)) mult = mult.times(2);
     if (hasUpgrade("A", 11)) mult = mult.times(2);
+    if (hasUpgrade("A", 12)) mult = mult.times(2);
+    if (hasMilestone("C", 0)) mult = mult.times(3);
     return mult;
   },
   gainExp() {
@@ -212,7 +215,12 @@ addLayer("E", {
     Answers: {
       embedLayer: "A",
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
+        return (
+          hasUpgrade("E", 52) ||
+          hasUpgrade("A", 11) ||
+          player.C.unlocked ||
+          player.A.unlocked
+        );
       },
       content: [
         "main-display",
@@ -220,6 +228,23 @@ addLayer("E", {
         "blank",
         "milestones",
         "blank",
+        "blank",
+        "upgrades",
+        "buyables"// all the stuff for the actual layer you're using
+      ]
+    },
+    Conundrums: {
+      embedLayer: "C",
+      unlocked() {
+        return hasUpgrade("A", 13) || hasMilestone("C", 2) || player.C.unlocked;
+      },
+      content: [
+        "main-display",
+        "prestige-button",
+        "blank",
+        "milestones",
+        "blank",
+        "buyables",
         "blank",
         "upgrades" // all the stuff for the actual layer you're using
       ]
@@ -251,14 +276,20 @@ addLayer("A", {
   exponent: 0.5, // "normal" prestige gain is (currency^exponent).
 
   gainMult() {
-    // Returns your multiplier to your gain of the prestige resource.
-    return new Decimal(1); // Factor in any bonuses multiplying gain here.
+    mult = new Decimal(1);
+    if (hasMilestone("C", 1)) mult = mult.times(2);
+    return mult;
   },
   gainExp() {
     // Returns your exponent to your gain of the prestige resource.
     return new Decimal(1);
   },
-
+  doReset(resettingLayer) {
+    let keep = [];
+    if (hasMilestone("C", 2) && resettingLayer == "C") keep.push("upgrades");
+    if (hasMilestone("C", 2) && resettingLayer == "C") keep.push("milestones");
+    if (layers[resettingLayer].row > this.row) layerDataReset("A", keep);
+  },
   layerShown() {
     return false;
   }, // Returns a bool for if this layer's node should be visible in the tree.
@@ -276,27 +307,15 @@ addLayer("A", {
       title: "Microwaved Pizza is a person? Seriously?.",
       description: "Multiply E gain by 2x &...",
       cost: new Decimal(2),
-      effect() {
-        let eff = player.points.plus(0)
-                if (hasUpgrade("A", 13))
-                    eff = eff.plus(1);
-                if (hasUpgrade("A", 13))
-                    eff = eff.times(1.001);
-                if (hasUpgrade("A", 13))
-                    eff = eff.times(1.005);
-                return eff;
-      },
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 11);
+        return hasUpgrade("A", 11);
       }
     },
     13: {
       title: "Variables are kinda easy.",
       description: "Good freaking luck",
       cost: new Decimal(3),
-      effect() {
-        
-      },
+      effect() {},
       unlocked() {
         return hasUpgrade("A", 12);
       }
@@ -306,7 +325,7 @@ addLayer("A", {
       description: "Understand buyables",
       cost: new Decimal(100),
       unlocked() {
-        return hasUpgrade("E", 52) || hasUpgrade("A", 13);
+        return hasUpgrade("A", 13);
       }
     }
   },
@@ -317,6 +336,65 @@ addLayer("A", {
         return player[this.layer].best.gte(5);
       }, // Used to determine when to give the milestone
       effectDescription: "Keep Enigma upgrades on Answer reset"
+    }
+  }
+});
+addLayer("C", {
+  name: "Conundrum", // This is optional, only used in a few places, If absent it just uses the layer id.
+  symbol: "C", // This appears on the layer's node. Default is the id with the first letter capitalized
+  position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+  startData() {
+    return {
+      unlocked: false,
+      points: new Decimal(0)
+    };
+  },
+  color: "#4BDC13",
+  requires: new Decimal(100), // Can be a function that takes requirement increases into account
+  resource: "Conundrums", // Name of prestige currency
+  baseResource: "Enigmas", // Name of resource prestige is based on
+  baseAmount() {
+    return player.E.points;
+  }, // Get the current amount of baseResource
+  type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+  exponent: 0.5, // Prestige currency exponent
+  gainMult() {
+    // Calculate the multiplier for main currency from bonuses
+    mult = new Decimal(1);
+    return mult;
+  },
+  gainExp() {
+    // Calculate the exponent on main currency from bonuses
+    return new Decimal(1);
+  },
+  row: 2, // Row the layer is in on the tree (0 is the first row)
+  layerShown() {
+    return false;
+  },
+  milestones: {
+    0: {
+      requirementDescription: "1 Conundrum",
+      done() {
+        return player[this.layer].best.gte(1);
+      }, // Used to determine when to give the milestone
+      effectDescription:
+        "Have a conundrum about the community, and begin to support it. The chaos makes your Enigma gain increase"
+    },
+    1: {
+      requirementDescription: "2 Conundrums",
+      done() {
+        return player[this.layer].best.gte(2);
+      }, // Used to determine when to give the milestone
+      effectDescription:
+        "I've been working in silence for too long. maybe I should get a playlist? It'd help me think clearer, maybe answer things quicker?"
+    },
+    2: {
+      requirementDescription: "3 Conundrums",
+      done() {
+        return player[this.layer].best.gte(3);
+      }, // Used to determine when to give the milestone
+      effectDescription:
+        "Just because these conundrums make me question my tactics doesn't mean I have to scap everything. <br> Keep enigma & answer progress on conundrum reset."
     }
   }
 });
