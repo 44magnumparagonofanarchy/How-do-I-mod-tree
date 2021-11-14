@@ -208,6 +208,7 @@ addLayer("E", {
         "blank",
         "milestones",
         "blank",
+        "buyables",
         "blank",
         "upgrades" // all the stuff for the actual layer you're using
       ]
@@ -230,7 +231,7 @@ addLayer("E", {
         "blank",
         "blank",
         "upgrades",
-        "buyables"// all the stuff for the actual layer you're using
+        "buyables" // all the stuff for the actual layer you're using
       ]
     },
     Conundrums: {
@@ -278,6 +279,8 @@ addLayer("A", {
   gainMult() {
     mult = new Decimal(1);
     if (hasMilestone("C", 1)) mult = mult.times(2);
+    if (hasMilestone("C", 3)) mult = mult.times(player.E.points.times(1.025));
+    if (hasMilestone("C", 1)) mult = mult.times();
     return mult;
   },
   gainExp() {
@@ -323,7 +326,7 @@ addLayer("A", {
     14: {
       title: "Microwaved Pizza is a person? Seriously?.",
       description: "Understand buyables",
-      cost: new Decimal(100),
+      cost: new Decimal(10000),
       unlocked() {
         return hasUpgrade("A", 13);
       }
@@ -377,16 +380,14 @@ addLayer("C", {
       done() {
         return player[this.layer].best.gte(1);
       }, // Used to determine when to give the milestone
-      effectDescription:
-        "Have a conundrum about the community, and begin to support it. The chaos makes your Enigma gain increase"
+      effectDescription: "The chaos of TMT makes your Enigma gain increase"
     },
     1: {
       requirementDescription: "2 Conundrums",
       done() {
         return player[this.layer].best.gte(2);
       }, // Used to determine when to give the milestone
-      effectDescription:
-        "I've been working in silence for too long. maybe I should get a playlist? It'd help me think clearer, maybe answer things quicker?"
+      effectDescription: "The chaos of TMT makes your Answer gain double"
     },
     2: {
       requirementDescription: "3 Conundrums",
@@ -394,7 +395,98 @@ addLayer("C", {
         return player[this.layer].best.gte(3);
       }, // Used to determine when to give the milestone
       effectDescription:
-        "Just because these conundrums make me question my tactics doesn't mean I have to scap everything. <br> Keep enigma & answer progress on conundrum reset."
+        "Keep enigma & answer progress on conundrum reset. <br> (Reset points, but keep all milestones and upgrades)"
+    },
+    3: {
+      requirementDescription: "5 Conundrums",
+      done() {
+        return player[this.layer].best.gte(5);
+      }, // Used to determine when to give the milestone
+      effectDescription:
+        "In all this chaos you find a reliable modder to help you. Though, they might be a wanted convict... <br> Questions multiply Answer gain by 1.025X"
+    }
+  },
+  buyables: {
+    showRespec: false,
+    unlocked() {
+      return hasUpgrade("A", 14);
+    },
+    respec() {
+      // Optional, reset things and give back your currency. Having this function makes a respec button appear
+      player[this.layer].points = player[this.layer].points.add(
+        player[this.layer].spentOnBuyables
+      ); // A built-in thing to keep track of this but only keeps a single value
+      resetBuyables(this.layer);
+      doReset(this.layer, true); // Force a reset
+    },
+    respecText: "Respec P¹", // Text on Respec button, optional
+    respecMessage: "Are you sure? Respeccing these forces a Conundrum reset.",
+    11: {
+      title: "P¹", // Optional, displayed at the top in a larger font
+      cost(x) {
+        // cost for buying xth buyable, can be an object if there are multiple currencies
+        if (x.gte(0)) x = x.plus(0);
+        if (x.gte(1)) x = x.pow(x);
+        let cost = Decimal.pow(2);
+        return cost;
+      },
+      effect(x) {
+        // Effects of owning x of the items, x is a decimal
+        let eff = {};
+        if (x.gte(1)) eff.first = player.A.points;
+        else eff.first = Decimal.pow(2);
+
+        if (x.gte(0)) eff.second = x.pow(0.8);
+        else
+          eff.second = x
+            .times(-1)
+            .pow(0.8)
+            .times(-1);
+        return eff;
+      },
+      display() {
+        // Everything else displayed in the buyable button after the title
+        let data = tmp[this.layer].buyables[this.id];
+        return (
+          "Cost: " +
+          format(data.cost) +
+          " P^1\n\
+                    Amount: " +
+          player[this.layer].buyables[this.id] +
+          "/4\n\
+                    Increases A gain by x " +
+          format(data.effect.first) +
+          " but divides E gain by " +
+          format(data.effect.second)
+        );
+      },
+      unlocked() {
+        return hasUpgrade("A", 14); //PLAYER IS A DARN FUNCTION WHY WON'T THIS WORK AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+      },
+      canAfford() {
+        return player.C.points.gte(
+          tmp[this.layer].buyables[this.id].cost
+        );
+      },
+      buy() {
+        cost = tmp[this.layer].buyables[this.id].cost;
+        player[this.layer].points = player[this.layer].points.sub(cost);
+        player[this.layer].buyables[this.id] = player[this.layer].buyables[
+          this.id
+        ].add(1);
+        player[this.layer].spentOnBuyables = player[
+          this.layer
+        ].spentOnBuyables.add(cost); // This is a built-in system that you can use for respeccing but it only works with a single Decimal value
+      },
+      buyMax() {}, // You'll have to handle this yourself if you want
+      style: { height: "222px" },
+      purchaseLimit: new Decimal(4),
+      sellOne() {
+        let amount = getBuyableAmount(this.layer, this.id);
+        if (amount.lte(0)) return; // Only sell one if there is at least one
+        setBuyableAmount(this.layer, this.id, amount.sub(1));
+        player[this.layer].points = player[this.layer].points.add(this.cost);
+      }
     }
   }
 });

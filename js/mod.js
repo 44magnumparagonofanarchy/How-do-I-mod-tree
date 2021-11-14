@@ -3,7 +3,6 @@ let modInfo = {
   id: "mymod",
   author: "44",
   pointsName: "Questions",
-  discordName: "No.",
   discordLink: "Nope.",
   initialStartPoints: new Decimal(0), // Used for hard resets and new players
 
@@ -12,8 +11,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-  num: "0.2",
-  name: "The other true start"
+  num: "0.3",
+  name: "Progress, baby"
 };
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -21,7 +20,11 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Added Enigma Layer.<br>
 		- Added Questions.<br>
     - Added Answers <br>
-    - Added Conundrums`;
+    - Added Conundrums <br>
+  <h3>v0.3</h3><br>
+    - More content added to conundrums <br>
+    - Buyables with a reference to some bad game <br>
+    - An easter egg`;
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`;
 
